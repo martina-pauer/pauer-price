@@ -69,4 +69,32 @@ class Price:
         Define pricing option for a product.
     '''    
     def __init__(self):
-        pass    
+        
+        self.price: int = 0
+        
+        self.product_name: str = 'Free'
+    
+    def set_name(self, product_name: str):
+        '''
+            Give which product has this price
+        '''
+        self.product_name = product_name
+
+    def get_name(self) -> str:
+        '''
+            Return which product has this name
+        '''
+        return self.product_name
+
+    def set_price(self, price: int):
+        '''
+            Give a price to this option
+        '''    
+        self.price = price
+
+    def get_price(self) -> int:
+        '''
+            Return the price of this option
+            object
+        '''
+        return self.price
