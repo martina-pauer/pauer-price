@@ -1,3 +1,6 @@
+import requests
+import json
+
 class Connection:
     '''
         Define conection abstraction
@@ -21,12 +24,17 @@ class Connection:
         '''
         self.URL = URL
         self.API_access_token = token
-        # Establish connection to API waitng for JSON requests
 
     def send_data(self, request: str):
         '''
             Send orders to API in JSON format.
         '''
+        # Replace 6 letter 'X' with the token to use for flexibility and security
+        request.replace('XXXXXX', self.API_access_token)
+        # Send JSON to URL
+        gate = requests.post(self.URL, json=request)
+        gate.close()
+        # Update sended response
         self.JSON_sended = request
 
     def get_response(self) -> str:
@@ -34,4 +42,5 @@ class Connection:
             Give the received from API
             data in JSON format.
         '''
+        self.JSON_response = json.dumps(requests.post(self.URL).json())
         return self.JSON_response
