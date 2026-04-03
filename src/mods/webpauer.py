@@ -1,5 +1,6 @@
 from network import Connection
 from products import Product
+from products import Quality
 from data import Price
 
 class WebPauer:
@@ -19,6 +20,8 @@ class WebPauer:
         self.connector: Connection = Connection()
 
         self.products: list[Product] = [Product(), Product(), Product()]
+
+        self.view = None
 
     def set_name(self, give_name: str):
         '''
@@ -103,3 +106,23 @@ class WebPauer:
             connected API.
         '''
         self.connector.get_response()
+
+    def add_view(self, obj):
+        self.view = obj
+
+        @self.view.route('/')
+        def show() -> str:
+            
+            page = ''
+            
+            with open('../web/index.html', 'r') as text:
+                # Get data from a hypertext document for make the page
+                if text.__contains__('[REPL'):
+                    better: list[list[Price], list[Quality]] = self.get_products()[0].get_better_option()
+                    page += text.replace('[REPLACE]', f'Prodct to ${better[0]} with scored quality {better[1]}.')
+                    del better
+                else:
+                    # Only replace when found replacing line after only add text for more velocity
+                    page += text    
+                
+            return page
