@@ -1,0 +1,18 @@
+*
+{
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+    background-color: #145474;
+    color: black;
+}
+
+div
+{
+    border: solid salmon 1px;
+}
+
+h1
+{
+    border: dashed black 3px;
+}

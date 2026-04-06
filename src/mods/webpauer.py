@@ -15,7 +15,7 @@ class WebPauer:
 
         self.user_inputs: dict[str, str] = {}
 
-        self.stylesheet_URL: str = 'https://'
+        self.stylesheet_URL: str = '/workspaces/pauer-price/web/test.css'
 
         self.connector: Connection = Connection()
 
@@ -117,6 +117,8 @@ class WebPauer:
             
             with open('/workspaces/pauer-price/src/web/index.html', 'r') as text:
                 for line_text in text.readlines():
+                    # Add style
+                    line_text.replace('[STYLE]', self.stylesheet_URL)
                     # Get data from a hypertext document for make the page
                     if line_text.__contains__('[REPL'):
                         better: list[Price, Quality] = self.get_products()[0].get_better_option()
