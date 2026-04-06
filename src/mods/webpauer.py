@@ -116,7 +116,7 @@ class WebPauer:
             page = ''
             
             with open('/workspaces/pauer-price/src/web/index.html', 'r') as text:
-                for line_text in text.readlines()
+                for line_text in text.readlines():
                     # Get data from a hypertext document for make the page
                     if line_text.__contains__('[REPL'):
                         better: list[Price, Quality] = self.get_products()[0].get_better_option()
