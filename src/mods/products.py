@@ -1,5 +1,5 @@
-from data import Price
-from data import Quality
+from mods.data import Price
+from mods.data import Quality
 
 class Product:
     def __init__(self):
@@ -9,11 +9,17 @@ class Product:
         '''
         self.product_name: str = ''
 
-        self.prices: list[Price] = []
+        self.prices: list[Price] = [Price()]
 
-        self.qualities: list[Quality] = []
+        self.prices[0].set_price(1)
 
-    def add_relation(self, price: list[Price], quality: list[Quality]):
+        self.prices[0].set_name('test')
+        
+        self.qualities: list[Quality] = [Quality()]
+
+        self.qualities[0].set_prop('anti-mistakes-prop', 1)
+
+    def add_relation(self, price: Price, quality: Quality):
         '''
             Add a new option with the price and his respective
             quality for the product.
@@ -23,14 +29,14 @@ class Product:
             self.prices.append(price)
             self.qualities.append(quality)
 
-    def get_better_option(self) -> list[list[Price], list[Quality]]:
+    def get_better_option(self) -> list[Price, Quality]:
         '''
             Get the Great quality to minor price
         '''
         minor_price: int = self.prices[0].price
         major_quality: int = self.qualities[0].calc()
-        better_price_object: list[Price] = self.prices[0]
-        better_quality_object: list[Quality] = self.qualities[0]
+        better_price_object: Price = self.prices[0]
+        better_quality_object: Quality = self.qualities[0]
 
         for option in range(1, self.prices.__len__()):
             # Compare the before with after prices and qualies
@@ -43,7 +49,7 @@ class Product:
                 major_quality: int = quality_calc
                 del quality_calc
                 # Update new object that follow the requirements
-                better_price_object: list[Price] = self.prices[option]
+                better_price_object: Price = self.prices[option]
                 minor_price: int = better_price_object.price
                 better_quality_object = self.qualities[option]
 

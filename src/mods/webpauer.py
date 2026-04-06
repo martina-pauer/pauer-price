@@ -1,7 +1,7 @@
-from network import Connection
-from products import Product
-from products import Quality
-from data import Price
+from mods.network import Connection
+from mods.products import Product
+from mods.products import Quality
+from mods.data import Price
 
 class WebPauer:
     '''
@@ -115,14 +115,15 @@ class WebPauer:
             
             page = ''
             
-            with open('../web/index.html', 'r') as text:
-                # Get data from a hypertext document for make the page
-                if text.__contains__('[REPL'):
-                    better: list[list[Price], list[Quality]] = self.get_products()[0].get_better_option()
-                    page += text.replace('[REPLACE]', f'Prodct to ${better[0]} with scored quality {better[1]}.')
-                    del better
-                else:
-                    # Only replace when found replacing line after only add text for more velocity
-                    page += text    
+            with open('/workspaces/pauer-price/src/web/index.html', 'r') as text:
+                for line_text in text.readlines()
+                    # Get data from a hypertext document for make the page
+                    if line_text.__contains__('[REPL'):
+                        better: list[Price, Quality] = self.get_products()[0].get_better_option()
+                        page += line_text.replace('[REPLACE]', f'Product to ${better[0].get_price()} with scored quality {better[1].calc()}.')
+                        del better
+                    else:
+                        # Only replace when found replacing line after only add text for more velocity
+                        page += line_text     
                 
             return page
