@@ -9,16 +9,16 @@ class Product:
         '''
         self.product_name: str = ''
 
-        self.prices: list[Price] = [Price()]
-
-        self.prices[0].set_price(1)
-
-        self.prices[0].set_name('test')
+        self.prices: list[Price] = []
         
-        self.qualities: list[Quality] = [Quality()]
+        self.qualities: list[Quality] = []
 
-        self.qualities[0].set_prop('anti-mistakes-prop', 1)
-
+    def set_name(self, give: str):
+        '''
+            Give name to product
+        '''
+        self.product_name = give
+        
     def add_relation(self, price: Price, quality: Quality):
         '''
             Add a new option with the price and his respective
