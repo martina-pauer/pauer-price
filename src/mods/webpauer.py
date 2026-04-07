@@ -15,7 +15,7 @@ class WebPauer:
 
         self.user_inputs: dict[str, str] = {}
 
-        self.stylesheet_URL: str = 'https://github.githubassets.com/assets/light-0c8222dcd7a4f9b7.css'
+        self.stylesheet_URL: str = 'test.css'
 
         self.connector: Connection = Connection()
 
@@ -42,7 +42,7 @@ class WebPauer:
         '''
         self.connector = conn
         # Select access token from form and API URL from the object
-        self.connector.connect(conn.URL, self.read_from_user('formText'))
+        self.connector.connect(conn.URL, self.user_inputs['formText'])
 
     def add_product(self, prod: Product):
         '''
@@ -76,8 +76,8 @@ class WebPauer:
         '''
         # Detition map for optimize choose one app part by category of data input
         get_category: dict[str, str] =  {
-                            'formText': self.user_inputs.__setitem__(category, '[TOKEN FROM NEXT ENTRY IN WEB FORM]'),
-                            'devFile': self.user_inputs.__setitem__(category, '[CONTENT FROM FILE]'),
+                            'formText': self.user_inputs.__setitem__(category, self.get_text_input(1)),
+                            'devFile': self.user_inputs.__setitem__(category, ''),
                             'formOption': self.user_inputs.__setitem__(category, ''),
                             'cam': self.user_inputs.__setitem__(category, ''),
                             'mic': self.user_inputs.__setitem__(category, ''),
@@ -107,6 +107,15 @@ class WebPauer:
         '''
         self.connector.get_response()
 
+    def get_text_input(self, input_number: int) -> str:
+        '''
+            Get Value from numbered "input_" 
+            text input in the page form
+        '''
+        input_name: str = f'input_{input_number}'
+        
+        return 'Text from form input with name "formText"'
+
     def add_view(self, obj):
         self.view = obj
 
@@ -125,6 +134,8 @@ class WebPauer:
                     else:
                         # Only replace when found replacing line after only add text for more velocity
                         line_text = line_text.replace('X', self.stylesheet_URL)
+                        # After style change line_text value by his text replacing input for a writing field
+                        line_text = line_text.replace('[INPUT]', '<input id = "input_1" name = "input_1" type = "text" />')
                         page += line_text     
                 
             return page
