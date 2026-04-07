@@ -34,28 +34,34 @@ connector.connect('https://tiendas.axoft.com/api/Aperture/dummy', connector.API_
 app.read_from_user('formText')
 ##########################################################
 # Define products and qualities
-product_object = Product()
-price_object = Price()
-quality_object = Quality()
+product_object_first = Product()
+product_object_second = Product()
+price_object_first = Price()
+price_object_second = Price()
+quality_object_first = Quality()
+quality_object_second = Quality()
 # Config objects
-product_object.set_name('[ Fixing Test Product Getting ]')
-price_object.set_price(1)
-quality_object.set_prop('Product Property', 5)
-quality_object.set_prop('Other', 3)
+product_object_first.set_name('[ Fixing Test Product Getting ]')
+price_object_first.set_price(1)
+quality_object_first.set_prop('Product Property', 5)
+quality_object_first.set_prop('Other', 3)
 # Add product configured with price and quality prop
-product_object.add_relation(price_object, quality_object)
+product_object_first.add_relation(price_object_first, quality_object_first)
+app.add_product(product_object_first)
 # Reconfigure objects and add new product
-product_object.set_name('[NEW]')
-price_object.set_price(5)
-quality_object.set_prop('Material', 3)
+product_object_second.set_name('[NEW]')
+price_object_second.set_price(5)
+quality_object_second.set_prop('Material', 3)
 # Add New Product
-product_object.add_relation(price_object, quality_object)
+product_object_second.add_relation(price_object_second, quality_object_second)
 # When Get All Options Add to App Product Stack
-app.add_product(product_object)
+#app.add_product(product_object)
 # Free Out RAM of Uneeded Object
-del product_object, price_object, quality_object
+del product_object_first, price_object_first, quality_object_first, product_object_second, quality_object_second, price_object_second
 ##########################################################
 # Found better product
+for prod in app.products:
+    print(prod.get_quality()[0].calc())
 checks: list[Product] = app.products
 # Send all options to first position and get better from the first
 for position in range(1, checks.__len__()):
