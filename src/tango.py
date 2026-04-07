@@ -56,15 +56,15 @@ app.add_product(product_object)
 del product_object, price_object, quality_object
 ##########################################################
 # Found better product
-checks: list[Product] = app.get_products()
+checks: list[Product] = app.products
 # Send all options to first position and get better from the first
-for position in range(1, checks.__len__() - 1):
+for position in range(1, checks.__len__()):
     better: list[Price, Quality] = checks[position].get_better_option()
     checks[0].add_relation(better[0], better[1])
     del better
 # Show in the web app which option is better
 better: Product = Product()
-selection: list[list[Price], list[Quality]] = checks[0].get_better_option()
+selection: list[Price, Quality] = checks[0].get_better_option()
 del checks
 better.add_relation(selection[0], selection[1])
 del selection

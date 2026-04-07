@@ -19,7 +19,7 @@ class WebPauer:
 
         self.connector: Connection = Connection()
 
-        self.products: list[Product] = [Product(), Product(), Product()]
+        self.products: list[Product] = [Product()]
 
         self.view = None
 
