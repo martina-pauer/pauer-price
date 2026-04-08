@@ -1,18 +1,19 @@
 *
 {
     margin: 0;
+    font-family: Helvetica;
     padding: 1em;
     text-align: center;
     background-color: #145474;
-    color: black;
+    color: #dddddd;
 }
 
 div
 {
-    border: solid salmon 1px;
+    border: solid rgb(231, 153, 129) 1px;
 }
 
 h1
 {
-    border: dashed black 3px;
+    border: dashed #eeeeee 3px;
 }

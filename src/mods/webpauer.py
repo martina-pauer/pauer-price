@@ -15,7 +15,7 @@ class WebPauer:
 
         self.user_inputs: dict[str, str] = {}
 
-        self.stylesheet_URL: str = 'test.css'
+        self.stylesheet_path: str = 'test.css'
 
         self.connector: Connection = Connection()
 
@@ -29,11 +29,12 @@ class WebPauer:
         '''
         self.app_name = give_name
 
-    def set_style(self, URL: str):
+    def set_style(self, path: str):
         '''
-            Add styles to the Web App.
+            Add styles to the Web App
+            from local CSS file.
         '''
-        self.stylesheet_URL = URL
+        self.stylesheet_path = path
 
     def add_connection(self, conn: Connection):
         '''
@@ -133,9 +134,19 @@ class WebPauer:
                         del better
                     else:
                         # Only replace when found replacing line after only add text for more velocity
-                        line_text = line_text.replace('X', self.stylesheet_URL)
-                        # After style change line_text value by his text replacing input for a writing field
-                        line_text = line_text.replace('[INPUT]', '<input id = "input_1" name = "input_1" type = "text" />')
+                        if line_text.__contains__('CSS'):
+                            css_content = ''
+                            with open(self.stylesheet_path, 'r') as container:
+                                for line in container.readlines():
+                                    # Make this for read all lines not only the first
+                                    css_content += line
+                            # Add code for styles in <style> tag HTML document section        
+                            line_text = line_text.replace('[CSS CODE]', css_content)
+                            # Make two actions, one of this conditionals and adding HTML to the view
+                        else:    
+                            # After style change line_text value by his text replacing input for a writing field
+                            line_text = line_text.replace('[INPUT]', '<input id = "input_1" name = "input_1" type = "text" />')
+                        # Always add line_text don't matter modification    
                         page += line_text     
                 
             return page
