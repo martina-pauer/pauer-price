@@ -15,7 +15,7 @@ class WebPauer:
 
         self.user_inputs: dict[str, str] = {}
 
-        self.stylesheet_path: str = 'test.css'
+        self.stylesheet_path: str = '/workspaces/pauer-price/src/web/test.css'
 
         self.connector: Connection = Connection()
 
