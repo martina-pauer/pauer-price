@@ -60,8 +60,6 @@ product_object_second.add_relation(price_object_second, quality_object_second)
 del product_object_first, price_object_first, quality_object_first, product_object_second, quality_object_second, price_object_second
 ##########################################################
 # Found better product
-for prod in app.products:
-    print(prod.get_quality()[0].calc())
 checks: list[Product] = app.products
 # Send all options to first position and get better from the first
 for position in range(1, checks.__len__()):
