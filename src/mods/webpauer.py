@@ -120,7 +120,7 @@ class WebPauer:
     def add_view(self, obj):
         self.view = obj
 
-        @self.view.route('/')
+        @self.view.route('/', methods = ['GET', 'POST'])
         def show() -> str:
             
             page = ''
