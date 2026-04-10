@@ -145,7 +145,10 @@ class WebPauer:
                             # Make two actions, one of this conditionals and adding HTML to the view
                         else:    
                             # After style change line_text value by his text replacing input for a writing field
-                            line_text = line_text.replace('[INPUT]', '<input id = "input_1" name = "input_1" type = "text" />')
+                            entry_name: str = 'input_1'
+                            # Scape single quotes for work better
+                            line_text = line_text.replace('[INPUT]', f'<input id = "{entry_name}" name = "input_1" type = "text" onchange = \'javascript: maskData("{entry_name}");\' />')
+                            del entry_name
                         # Always add line_text don't matter modification    
                         page += line_text     
                 
