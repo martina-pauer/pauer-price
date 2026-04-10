@@ -159,8 +159,8 @@ class WebPauer:
                 text: str = request.form['input_1']    
                 print(f'Encrypted: {text}')
                 # Uncrypt text
-                first_key: str = ''
-                second_key: str = ''
+                first_key: str = ' -   ´ '
+                second_key: str = ' `     '
                 # Translate using inverse relation for encrypt
                 inverse_relation: dict = {first_key : 'E', second_key: 'O'}
                 text = text.replace(text, first_key).replace(text, second_key)
