@@ -42,13 +42,17 @@
                 let formData = document.getElementById(identifier);
                 let content = formData.value;
                 let cipher_list = [];
-                // Iterates over each character in original text and key char that is very long for cipher all the data input
-                for (let index = 0; index < content.length; index++)
+                // Only make encryption when get all the text
+                if (content.length >= 40)
                 {
-                    cipher_list.push(relation(content[index], private_key[index]));
-                }
-                // Now change value with cipher text
-                formData.value = cipher_list.join("");
+                    // Iterates over each character in original text and key char that is very long for cipher all the data input
+                    for (let index = 0; index < content.length; index++)
+                    {
+                        cipher_list.push(relation(content[index], private_key[index]));
+                    }
+                    // Now change value with cipher text
+                    formData.value = cipher_list.join("");
+                }    
             }
         </script>    
     </head>
