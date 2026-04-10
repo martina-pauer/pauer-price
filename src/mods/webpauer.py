@@ -19,7 +19,7 @@ class WebPauer:
 
         self.connector: Connection = Connection()
 
-        self.products: list[Product] = [Product()]
+        self.products: list[Product] = [Product(), Product()]
 
         self.view = None
 
@@ -123,7 +123,8 @@ class WebPauer:
         @self.view.route('/', methods = ['GET', 'POST'])
         def show() -> str:
             
-            page = ''
+            page: str = ''
+            input_number: int = 1
             
             with open('/workspaces/pauer-price/src/web/index.html', 'r') as text:
                 for line_text in text.readlines():
@@ -145,7 +146,8 @@ class WebPauer:
                             # Make two actions, one of this conditionals and adding HTML to the view
                         else:    
                             # After style change line_text value by his text replacing input for a writing field
-                            entry_name: str = 'input_1'
+                            entry_name: str = f'input_{input_number}'
+                            input_number += 1
                             # Scape single quotes for work better
                             line_text = line_text.replace('[INPUT]', f'<input id = "{entry_name}" name = "input_1" type = "text" onchange = \'javascript: maskData("{entry_name}");\' />')
                             del entry_name
