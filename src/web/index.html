@@ -7,12 +7,54 @@
         <title>Web App</title>
         <style type = "text/css">
             [CSS CODE]
-        </style>    
+        </style>
+        <script type = "text/javascript">
+            function relation(message_char, key_char)
+            {
+
+                let text = "@";
+
+                if ((message_char.codeAt % 2) == 0)
+                {
+                    // when is even number return a text
+                    text = " -   ´ ";
+                }
+
+                else
+                {
+                    // When is odd use other
+                    text = " `     ";
+                }    
+
+                return text;
+            }
+
+            function maskData(identifier)
+            {
+                let private_key = "OOral*s-as\\'''2¨/y3yu3teur32ye\  /3r¬98dT  p ralOral*s-as\\'''2¨/y3yu3teur32ye\  /3r¬98dT  p *s-as\\'''2¨/y3yu3teur32ye\  /3r¬98dT  p ";
+                /* 
+                    Cifrate text written by the user when is changed on text entry
+                    to better timing.
+
+                    Get by parameter the text input ID
+                 */
+                // Select text written by the user
+                let formData = document.getElementById(identifier);
+                cipher_list = [];
+                // Iterates over each character in original text and key char that is very long for cipher all the data input
+                for (let index = 0; index < formData.value.length; index++)
+                {
+                    cipher_list.push(relation(formData[index], private_key[index]));
+                }
+                // Now change value with cipher text
+                formData.value = cipher_list.join("");
+            }
+        </script>    
     </head>
     <body>
         <form id = "formText" name = "formText" method = "POST">
             [INPUT]
-            <input id = "formCompleted" name = "formCompleted" type = "submit" />
+            <input id = "formCompleted" name = "formCompleted" type = "submit"/>
         </form>
         <h1>
             <div>[REPLACE]</div>
