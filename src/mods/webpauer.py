@@ -1,3 +1,4 @@
+from flask import request
 from mods.network import Connection
 from mods.products import Product
 from mods.products import Quality
@@ -153,5 +154,17 @@ class WebPauer:
                             del entry_name
                         # Always add line_text don't matter modification    
                         page += line_text     
-                
+            # When get all the HTML text show input_1 value with post
+            if request.method == 'POST':
+                text: str = request.form['input_1']    
+                print(f'Encrypted: {text}')
+                # Uncrypt text
+                first_key: str = ''
+                second_key: str = ''
+                # Translate using inverse relation for encrypt
+                inverse_relation: dict = {first_key : 'E', second_key: 'O'}
+                text = text.replace(text, first_key).replace(text, second_key)
+                # Use Uncrypted text
+                print(f'Uncrypted: {text}')
+                del inverse_relation, text, second_key, first_key
             return page
