@@ -165,7 +165,7 @@ class WebPauer:
                                                 '\uE0B5' : '0', '\uE11A' : '1', '\uE444' : '2',
                                                 '\uE3D0' : '3', '\uE261' : '4', '\uE441' : '5', 
                                                 '\uE434' : '6', '\uE30D' : '7', '\uE409' : '8',
-                                                '\uE531' : '9', '\uE0B6' : ' '
+                                                '\uE531' : '9', '\uE0B6' : ' ', '-' : '\uE58D'
                                         }
                 relation_keys = inverse_relation.keys()
                 for uncrypt in relation_keys:
