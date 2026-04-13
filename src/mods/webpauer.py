@@ -173,5 +173,5 @@ class WebPauer:
                 del relation_keys    
                 # Use Uncrypted text
                 print(f'Uncrypted: {text}')
-                del inverse_relation, text, second_key, first_key
+                del inverse_relation, text
             return page
