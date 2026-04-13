@@ -9,29 +9,16 @@
             [CSS CODE]
         </style>
         <script type = "text/javascript">
-            function relation(message_char, key_char)
+            function relation(message_char)
             {
 
-                let text = "@";
+                let relations = {"a" : "\uE4B0", "b" : "\uE4AD", "c" : "\uE4AE", "d" : "\uE4AF", "e" : "\uE39D", "f" : "\uE243", "0" : "\uE0B5", "1" : "\uE11A", "2" : "\uE444", "3" : "\uE3D0", "4" : "\uE261", "5" : "\uE441", "6" : "\uE434", "7" : "\u", "8" : "\u", "9" : "\u", " " : "\uE0B6"};
 
-                if ((message_char.codeAt % 2) == 0)
-                {
-                    // when is even number return a text
-                    text = " -   ´ ";
-                }
-
-                else
-                {
-                    // When is odd use other
-                    text = " `     ";
-                }    
-
-                return text;
+                return message_char.replace(message_char, relations[message_char]);
             }
 
             function maskData(identifier)
             {
-                let private_key = "OOral*s-as\\'''2¨/y3yu3teur32ye\  /3r¬98dT  p ralOral*s-as\\'''2¨/y3yu3teur32ye\  /3r¬98dT  p *s-as\\'''2¨/y3yu3teur32ye\  /3r¬98dT  p ";
                 /* 
                     Cifrate text written by the user when is changed on text entry
                     to better timing.
@@ -40,15 +27,15 @@
                  */
                 // Select text written by the user
                 let formData = document.getElementById(identifier);
-                let content = formData.value;
+                let content = formData.value.toLowerCase();
                 let cipher_list = [];
                 // Only make encryption when get all the text
-                if (content.length >= 40)
+                if (content.length >= 8)
                 {
                     // Iterates over each character in original text and key char that is very long for cipher all the data input
                     for (let index = 0; index < content.length; index++)
                     {
-                        cipher_list.push(relation(content[index], private_key[index]));
+                        cipher_list.push(relation(content[index]));
                     }
                     // Now change value with cipher text
                     formData.value = cipher_list.join("");

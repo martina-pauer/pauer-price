@@ -156,14 +156,21 @@ class WebPauer:
                         page += line_text     
             # When get all the HTML text show input_1 value with post
             if request.method == 'POST':
-                text: str = request.form['input_1']    
+                text: str = request.form['input_1'].lower()    
                 print(f'Encrypted: {text}')
-                # Uncrypt text
-                first_key: str = ' -   ´ '
-                second_key: str = ' `     '
                 # Translate using inverse relation for encrypt
-                inverse_relation: dict = {first_key : 'E', second_key: 'O'}
-                text = text.replace(text, first_key).replace(text, second_key)
+                inverse_relation: dict = {
+                                                '\uE4B0': 'a', '\uE4AD' : 'b', '\uE4AE' : 'c', 
+                                                '\uE4AF' : 'd', '\uE39D' : 'e', '\uE243' : 'f',
+                                                '\uE0B5' : '0', '\uE11A' : '1', '\uE444' : '2',
+                                                '\uE3D0' : '3', '\uE261' : '4', '\uE441' : '5', 
+                                                '\uE434' : '6', '\u' : '7', '\u' : '8',
+                                                '\u' : '9', '\uE0B6' : ' '
+                                        }
+                relation_keys = inverse_relation.keys()
+                for uncrypt in relation_keys:
+                    text: str = text.replace(uncrypt, inverse_relation[uncrypt])
+                del relation_keys    
                 # Use Uncrypted text
                 print(f'Uncrypted: {text}')
                 del inverse_relation, text, second_key, first_key
