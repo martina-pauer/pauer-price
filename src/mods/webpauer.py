@@ -44,7 +44,7 @@ class WebPauer:
         '''
         self.connector = conn
         # Select access token from form and API URL from the object
-        uncrypted_text: str = self.uncrypt(self.read_from_user('formText'))         
+        uncrypted_text: str = self.uncrypt(self.get_text_input(1))         
         self.connector.connect(conn.URL, uncrypted_text)
         del uncrypted_text
 
@@ -169,7 +169,7 @@ class WebPauer:
                 del WebPauer.uncrypt    
                 # Use Uncrypted text
                 print(f'Uncrypted: {uncrypted_text}')
-                del inverse_relation, uncrypted_text
+                del uncrypted_text
             return page
 
     def uncrypt(self, coded_message: str) -> str:
