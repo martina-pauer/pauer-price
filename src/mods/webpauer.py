@@ -165,13 +165,14 @@ class WebPauer:
                                                 '\uE0B5' : '0', '\uE11A' : '1', '\uE444' : '2',
                                                 '\uE3D0' : '3', '\uE261' : '4', '\uE441' : '5', 
                                                 '\uE434' : '6', '\uE30D' : '7', '\uE409' : '8',
-                                                '\uE531' : '9', '\uE0B6' : ' ', '-' : '\uE58D'
+                                                '\uE531' : '9', '\uE0B6' : ' ', '\uE58D' : '-'
                                         }
                 relation_keys = inverse_relation.keys()
+                uncrypted_text: str = text
                 for uncrypt in relation_keys:
-                    text: str = text.replace(uncrypt, inverse_relation[uncrypt])
+                    uncrypted_text: str = uncrypted_text.replace(uncrypt, inverse_relation[uncrypt])
                 del relation_keys    
                 # Use Uncrypted text
-                print(f'Uncrypted: {text}')
-                del inverse_relation, text
+                print(f'Uncrypted: {uncrypted_text}')
+                del inverse_relation, text, uncrypted_text
             return page
