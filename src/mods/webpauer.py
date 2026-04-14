@@ -44,7 +44,21 @@ class WebPauer:
         '''
         self.connector = conn
         # Select access token from form and API URL from the object
-        self.connector.connect(conn.URL, self.user_inputs['formText'])
+        inverse_relation: dict = {
+                                        '\uE4B0': 'a', '\uE4AD' : 'b', '\uE4AE' : 'c', 
+                                        '\uE4AF' : 'd', '\uE39D' : 'e', '\uE243' : 'f',
+                                                '\uE0B5' : '0', '\uE11A' : '1', '\uE444' : '2',
+                                        '\uE3D0' : '3', '\uE261' : '4', '\uE441' : '5', 
+                                                '\uE434' : '6', '\uE30D' : '7', '\uE409' : '8',
+                                        '\uE531' : '9', '\uE0B6' : ' ', '\uE58D' : '-'
+                                }
+        relation_keys = inverse_relation.keys()
+        uncrypted_text: str = self.user_inputs['formText']
+        for uncrypt in relation_keys:
+            uncrypted_text: str = uncrypted_text.replace(uncrypt, inverse_relation[uncrypt])
+        del relation_keys         
+        self.connector.connect(conn.URL, uncrypted_text)
+        del uncrypted_text
 
     def add_product(self, prod: Product):
         '''
@@ -116,7 +130,10 @@ class WebPauer:
         '''
         input_name: str = f'input_{input_number}'
         
-        return 'Text from form input with name "formText"'
+        if request.method == 'POST':
+            return request.form[input_name].lower()
+        else:
+            return 'Input doesn't exist'
 
     def add_view(self, obj):
         self.view = obj
@@ -156,7 +173,7 @@ class WebPauer:
                         page += line_text     
             # When get all the HTML text show input_1 value with post
             if request.method == 'POST':
-                text: str = request.form['input_1'].lower()    
+                text: str = request.form['input_1'].lower()
                 print(f'Encrypted: {text}')
                 # Translate using inverse relation for encrypt
                 inverse_relation: dict = {
