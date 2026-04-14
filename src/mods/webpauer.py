@@ -118,9 +118,9 @@ class WebPauer:
         '''
         input_name: str = f'input_{input_number}'
         
-        if request.method == 'POST':
+        try:
             return self.user_inputs['formText']
-        else:
+        except:
             return 'Input doesn\'t exist'
 
     def add_view(self, obj):
