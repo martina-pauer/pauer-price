@@ -44,9 +44,8 @@ class WebPauer:
         '''
         self.connector = conn
         # Select access token from form and API URL from the object
-        uncrypted_text: str = self.uncrypt(self.get_text_input(1))         
-        self.connector.connect(conn.URL, uncrypted_text)
-        del uncrypted_text
+        self.connector.connect(conn.URL, self.uncrypt(self.connector.API_access_token))
+        del WebPauer.uncrypt
 
     def add_product(self, prod: Product):
         '''
@@ -161,15 +160,11 @@ class WebPauer:
                         page += line_text     
             # When get all the HTML text show input_1 value with post
             if request.method == 'POST':
-                self.user_inputs.__setitem__('formText', request.form['input_1'].lower())
-                print(f'Encrypted: {self.user_inputs["formText"]}')
-                # Translate using inverse relation for encrypt
-                uncrypted_text: str = self.uncrypt(self.user_inputs['formText'])
-                # This the last use of method uncrypt then delete by security
-                del WebPauer.uncrypt    
-                # Use Uncrypted text
-                print(f'Uncrypted: {uncrypted_text}')
-                del uncrypted_text
+                # Get data
+                self.user_inputs.__setitem__('formText', request.form['input_1'].lower())  
+                # Use Encrypted text only need uncrypt when is used when add connection
+                self.connector.API_access_token = self.user_inputs['formText']
+                
             return page
 
     def uncrypt(self, coded_message: str) -> str:
