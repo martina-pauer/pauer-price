@@ -33,16 +33,18 @@ connector.connect('https://tiendas.axoft.com/api/Aperture/dummy', connector.API_
 # Check each product and get price
 app.read_from_user('formText')
 ##########################################################
-for product_name in ['First', 'Second']:
+# Tuple with price, product name, props list
+for product_data in [(1, 'First', [('Material', 1), ('Brand', 3)]), (3, 'Second', [('Brand', 5)])]:
     # Define products and qualities
     product_object = Product()
     price_object = Price()
     quality_object = Quality()
     # Config objects
-    product_object.set_name(product_name)
-    price_object.set_price(1)
-    quality_object.set_prop('Product Property', 5)
-    quality_object.set_prop('Other', 3)
+    product_object.set_name(product_data[1])
+    price_object.set_price(product_data[0])
+    for props in product_data[2]:
+        # Iterates over the tuple list with property name and score
+        quality_object.set_prop(props[0], props[1])
     # Add product configured with price and quality prop
     product_object.add_relation(price_object, quality_object)
     app.add_product(product_object)
