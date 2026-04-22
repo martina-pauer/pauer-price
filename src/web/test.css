@@ -15,5 +15,12 @@ div
 
 h1
 {
-    border: dashed #eeeeee 3px;
+    border: dashed #eeeeee 0.3em;
+}
+
+span
+{
+    border: dotted #eeeeee 0.2em;
+    background-color: #001157;
+    padding: 1%;
 }

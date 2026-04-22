@@ -136,7 +136,7 @@ class WebPauer:
                     # Get data from a hypertext document for make the page
                     if line_text.__contains__('[REPL'):
                         better: list[Price, Quality] = self.get_products()[0].get_better_option()
-                        page += line_text.replace('[REPLACE]', f'Product to ${better[0].get_price()} with scored quality {better[1].calc()}.')
+                        page += line_text.replace('[REPLACE]', f'Product <span>{better[0].get_name()}</span> to ${better[0].get_price()} with scored quality {better[1].calc()}.')
                         del better
                     else:
                         # Only replace when found replacing line after only add text for more velocity

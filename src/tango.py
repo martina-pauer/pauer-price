@@ -34,13 +34,15 @@ connector.connect('https://tiendas.axoft.com/api/Aperture/dummy', connector.API_
 app.read_from_user('formText')
 ##########################################################
 # Tuple with price, product name, props list
-for product_data in [(11, 'First', [('Material', 1), ('Brand', 3)]), (3, 'Second', [('Brand', 5)])]:
+for product_data in [(1, 'First', [('Material', 8), ('Brand', 8)]), (3, 'Second', [('Brand', 5)])]:
     # Define products and qualities
     product_object = Product()
     price_object = Price()
     quality_object = Quality()
     # Config objects
     product_object.set_name(product_data[1])
+    price_object.set_name(product_object.get_name())
+    quality_object.set_name(product_object.get_name())
     price_object.set_price(product_data[0])
     for props in product_data[2]:
         # Iterates over the tuple list with property name and score
