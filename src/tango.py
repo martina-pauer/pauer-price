@@ -34,7 +34,7 @@ connector.connect('https://tiendas.axoft.com/api/Aperture/dummy', connector.API_
 app.read_from_user('formText')
 ##########################################################
 # Tuple with price, product name, props list
-for product_data in [(1, 'First', [('Material', 8), ('Brand', 8)]), (3, 'Second', [('Brand', 5)])]:
+for product_data in [(1, 'Option From [A]', [('Material', 8), ('Brand', 8)]), (3, 'Option From [B]', [('Brand', 5)])]:
     # Define products and qualities
     product_object = Product()
     price_object = Price()
