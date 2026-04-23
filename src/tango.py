@@ -68,5 +68,4 @@ del checks
 better.add_relation(selection[0], selection[1])
 del selection
 connector.send_data('{' + f'{better.get_prices()[0]}, {better.get_quality()[0]}' + '}')
-app.add_connection(connector)
 app.add_view(weba)

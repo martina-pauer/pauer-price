@@ -134,36 +134,36 @@ class WebPauer:
             with open('/workspaces/pauer-price/src/web/index.html', 'r') as text:
                 for line_text in text.readlines():
                     # Get data from a hypertext document for make the page
-                    if line_text.__contains__('[REPL'):
-                        better: list[Price, Quality] = self.get_products()[0].get_better_option()
-                        page += line_text.replace('[REPLACE]', f'Product <span>{better[0].get_name()}</span> to ${better[0].get_price()} with scored quality {better[1].calc()}.')
-                        del better
-                    else:
-                        # Only replace when found replacing line after only add text for more velocity
-                        if line_text.__contains__('CSS'):
-                            css_content = ''
-                            with open(self.stylesheet_path, 'r') as container:
-                                for line in container.readlines():
-                                    # Make this for read all lines not only the first
-                                    css_content += line
-                            # Add code for styles in <style> tag HTML document section        
-                            line_text = line_text.replace('[CSS CODE]', css_content)
-                            # Make two actions, one of this conditionals and adding HTML to the view
-                        else:    
-                            # After style change line_text value by his text replacing input for a writing field
-                            entry_name: str = f'input_{input_number}'
-                            input_number += 1
-                            # Scape single quotes for work better
-                            line_text = line_text.replace('[INPUT]', f'<input id = "{entry_name}" name = "input_1" type = "text" onchange = \'javascript: maskData("{entry_name}");\' />')
-                            del entry_name
-                        # Always add line_text don't matter modification    
-                        page += line_text     
+                    # Only replace when found replacing line after only add text for more velocity
+                    if line_text.__contains__('CSS'):
+                        css_content = ''
+                        with open(self.stylesheet_path, 'r') as container:
+                           for line in container.readlines():
+                                # Make this for read all lines not only the first
+                                css_content += line
+                        # Add code for styles in <style> tag HTML document section        
+                        line_text = line_text.replace('[CSS CODE]', css_content)
+                        # Make two actions, one of this conditionals and adding HTML to the view
+                    else:    
+                        # After style change line_text value by his text replacing input for a writing field
+                        entry_name: str = f'input_{input_number}'
+                        input_number += 1
+                        # Scape single quotes for work better
+                        line_text = line_text.replace('[INPUT]', f'<input id = "{entry_name}" name = "input_1" type = "text" onchange = \'javascript: maskData("{entry_name}");\' />')
+                        del entry_name
+                    # Always add line_text don't matter modification    
+                    page += line_text     
             # When get all the HTML text show input_1 value with post
             if request.method == 'POST':
                 # Get data
                 self.user_inputs.__setitem__('formText', request.form['input_1'].lower())  
                 # Use Encrypted text only need uncrypt when is used when add connection
                 self.connector.API_access_token = self.user_inputs['formText']
+                self.add_connection(self.connector)
+                # Show data only when get Token
+                better: list[Price, Quality] = self.get_products()[0].get_better_option()
+                page = page.replace('Write Tango API Access Token to Products Lists...', f'Product <span>{better[0].get_name()}</span> to ${better[0].get_price()} with scored quality {better[1].calc()}.')
+                del better
                 
             return page
 
