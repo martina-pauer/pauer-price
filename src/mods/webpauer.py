@@ -172,14 +172,9 @@ class WebPauer:
             Method for flexible encryption with
             temporal duration only when is needed
         ''' 
-        inverse_relation: dict = {
-                                    '\uE4B0': 'a', '\uE4AD' : 'b', '\uE4AE' : 'c', 
-                                    '\uE4AF' : 'd', '\uE39D' : 'e', '\uE243' : 'f',
-                                    '\uE0B5' : '0', '\uE11A' : '1', '\uE444' : '2',
-                                    '\uE3D0' : '3', '\uE261' : '4', '\uE441' : '5', 
-                                    '\uE434' : '6', '\uE30D' : '7', '\uE409' : '8',
-                                    '\uE531' : '9', '\uE0B6' : ' ', '\uE58D' : '-'
-                                }
+        import json
+        
+        inverse_relation: dict = json.loads('../web/encrypt.json')
         relation_keys: dict[str, str] = inverse_relation.keys()
         uncrypted_text: str = coded_message
         # Replacing the encrypted for equivalence using inverse relation to javascript dict
