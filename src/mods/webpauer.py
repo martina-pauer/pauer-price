@@ -175,6 +175,16 @@ class WebPauer:
         import json
         
         inverse_relation: dict = json.loads('../web/encrypt.json')
+        # Reverse Dictionary
+        aux: dict = {}
+        
+        for replacing in inverse_relation.keys():
+            # Send Value to Key and key to value
+            aux.__setitem__(inverse_relation[replacing], replacing)
+        # Save in inverse_relation the inverse dictionary
+        inverse_relation: dict = aux
+        del aux
+        # Follow with the uncrypting algorithm    
         relation_keys: dict[str, str] = inverse_relation.keys()
         uncrypted_text: str = coded_message
         # Replacing the encrypted for equivalence using inverse relation to javascript dict
