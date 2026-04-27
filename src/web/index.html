@@ -9,13 +9,11 @@
             [CSS CODE]
         </style>
         <script type = "text/javascript">
-            async function relation(message_char)
+            function relation(message_char)
             {
 
                 // Use Data From JSON
-                let text = "";
-                const res = await fetch("https://raw.githubusercontent.com/martina-pauer/pauer-price/9aa52dc163c917d68eb330e1533276340701e466/src/web/encrypt.json");
-                const relations = await res.json();
+                let relations = [JSON];
                 text = message_char.replace(message_char, relations[message_char]);
                 return text;
             }

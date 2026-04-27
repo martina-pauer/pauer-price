@@ -151,6 +151,17 @@ class WebPauer:
                         # Scape single quotes for work better
                         line_text = line_text.replace('[INPUT]', f'<input id = "{entry_name}" name = "input_1" type = "text" onchange = \'javascript: maskData("{entry_name}");\' />')
                         del entry_name
+                        if line_text.__contains__('[JSON]'):
+                            aux_text: str = ''
+                            # Load Text from JSON inside javascript for work well the encrypting
+                            with open('./web/encrypt.json') as lines:
+                                # Run in Context of src folder instead of src/mods folder
+                                for line in lines.readlines():
+                                    # Erase newlines and tabs in the file to use code format
+                                    aux_text += line.replace('\n', '').replace('\t', '')
+                            # Replace JSON template by content
+                            line_text = line_text.replace('[JSON]', aux_text)
+                            del aux_text
                     # Always add line_text don't matter modification    
                     page += line_text     
             # When get all the HTML text show input_1 value with post
@@ -174,7 +185,7 @@ class WebPauer:
         ''' 
         import json
         
-        inverse_relation: dict = json.loads('../web/encrypt.json')
+        inverse_relation: dict = json.loads('./web/encrypt.json')
         # Reverse Dictionary
         aux: dict = {}
         
