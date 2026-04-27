@@ -184,8 +184,10 @@ class WebPauer:
             temporal duration only when is needed
         ''' 
         import json
-        
-        inverse_relation: dict = json.loads('./web/encrypt.json')
+        # Use load method that get as input a file handler object to gets well the text
+        inverse_relation: dict = json.load  (
+                                                open('./web/encrypt.json', 'r')
+                                            )
         # Reverse Dictionary
         aux: dict = {}
         
