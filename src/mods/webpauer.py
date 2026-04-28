@@ -167,7 +167,7 @@ class WebPauer:
             # When get all the HTML text show input_1 value with post
             if request.method == 'POST':
                 # Get data
-                self.user_inputs.__setitem__('formText', request.form['input_1'].lower())  
+                self.user_inputs.__setitem__('formText', request.form['input_1'])  
                 # Use Encrypted text only need uncrypt when is used when add connection
                 self.connector.API_access_token = self.user_inputs['formText']
                 self.add_connection(self.connector)
