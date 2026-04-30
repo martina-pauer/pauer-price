@@ -6,6 +6,7 @@ from mods.products import Product
 from mods.webpauer import WebPauer
 from flask import Flask
 import json
+import random
 
 def make_load(file_name: str) -> str:
     '''
@@ -32,9 +33,24 @@ weba: Flask = Flask(__name__)
 connector.connect('https://tiendas.axoft.com/api/Aperture/dummy', connector.API_access_token)
 # Check each product and get price
 app.read_from_user('formText')
-##########################################################
-# Tuple with price, product name, props list
-for product_data in [(1, 'Option From [A]', [('Material', 8), ('Brand', 8)]), (3, 'Option From [B]', [('Brand', 5)])]:
+# Get Price, Product Name and list of tuples with Property Name or Score from API data
+###########################
+API_DATA: list[tuple] = []
+for product_name in range(1, 11):
+    product_tuple = (random.randint(1, 20), f'Product {product_name}', [])
+    # Get Properties With Score and add to props tuple list
+    prop = (f'Property {chr(random.randint(33, 126))}', random.randint(1, 10))
+    product_tuple[0].append(prop)
+    del prop
+    # Add to tuples list the products data tuple
+    API_DATA.append(product_tuple)
+    # Free memory when end loop for doesn't use more memory
+    del product_tuple
+# Free module used by module when is not needed    
+del random
+###########################
+# List with price, product name, props tuples list
+for product_data in API_DATA:
     # Define products and qualities
     product_object = Product()
     price_object = Price()
@@ -53,7 +69,8 @@ for product_data in [(1, 'Option From [A]', [('Material', 8), ('Brand', 8)]), (3
     # When Get All Options Add to App Product Stack
     # Free Out RAM of Uneeded Object
     del product_object, price_object, quality_object
-##########################################################
+# Delete API data for protect it
+del API_DATA    
 # Found better product
 checks: list[Product] = app.products
 # Send all options to first position and get better from the first
