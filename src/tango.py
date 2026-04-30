@@ -46,6 +46,7 @@ for product_name in range(1, 11):
     API_DATA.append(product_tuple)
     # Free memory when end loop for doesn't use more memory
     del product_tuple
+print(API_DATA)    
 # Free module used by module when is not needed    
 del random
 ###########################

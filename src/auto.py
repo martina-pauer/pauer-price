@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import os
+# Change Automaticly the encryption for security reasons in encypter source 'encrypt.json'
+os.system('cd web && chmod +x encrypt_gen.py && ./encrypt_gen.py && cd ..')
 # Automatation interactive script for run all the web app or only of them
 options: list[str] =    [
                             'tango'
