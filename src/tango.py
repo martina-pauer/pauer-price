@@ -40,7 +40,7 @@ for product_name in range(1, 11):
     product_tuple = (random.randint(1, 20), f'Product {product_name}', [])
     # Get Properties With Score and add to props tuple list
     prop = (f'Property {chr(random.randint(33, 126))}', random.randint(1, 10))
-    product_tuple[0].append(prop)
+    product_tuple[2].append(prop)
     del prop
     # Add to tuples list the products data tuple
     API_DATA.append(product_tuple)
