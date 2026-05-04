@@ -45,7 +45,6 @@ class WebPauer:
         self.connector = conn
         # Select access token from form and API URL from the object
         self.connector.connect(conn.URL, self.uncrypt(self.connector.API_access_token))
-        del WebPauer.uncrypt
 
     def add_product(self, prod: Product):
         '''
