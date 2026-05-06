@@ -1,6 +1,6 @@
 on:
-  schedule:
-    - cron: '30 20,13 * * 1,2,4,5,6,7
+  #schedule:
+    #- cron: '30 20,13 * * 1,2,4,5,6,7
 
 jobs:
   test_schedule:
