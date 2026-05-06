@@ -8,4 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Running Tango App
-        run: ls #cd /home/runner/work/pauer-price/pauer-price/src && ./auto.py --run_all n --selected_app 1
+        run: ls /home/runner/work/pauer-price/#cd /home/runner/work/pauer-price/pauer-price/src && ./auto.py --run_all n --selected_app 1
+
+        
