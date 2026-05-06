@@ -1,10 +1,6 @@
 name: Python Web Apps Flask Running
 
 on: push
-defaults:
-  run:
-    shell: bash
-    working-directory: ../../src
 jobs:
   my-job:
     name: Using Flask
@@ -12,5 +8,6 @@ jobs:
     steps:
       - name: Running Tango App
         run: cd ./auto.py --run_all n --selected_app 1
+    permissions: read-all    
 
         
