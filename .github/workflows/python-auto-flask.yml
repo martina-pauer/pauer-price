@@ -12,6 +12,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Running Tango App
         run: |
-        cd src 
-        chmod +x auto.py
-        ./auto.py --run_all n --selected_app 1
+          cd src 
+          chmod +x auto.py
+          ./auto.py --run_all n --selected_app 1
