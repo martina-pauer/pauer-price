@@ -1,10 +1,11 @@
-            - name: Pauer Web Apps Python Flask Running
+- name: Pauer Web Apps Python Flask Running
   # You may pin to the exact commit or the version.
   # uses: rethab/bash-action@8d1f7b182b1a1b00759f7ae1b67d5afb2a3494e9
-  uses: rethab/bash-action@v1
-  with:
+ - uses: rethab/bash-action@v1
+   with:
     # The command to run. Either "greet" or "error"
     command: # optional, default is greet
     # If the command is greet, the name to greet
       cd src
       ./auto.py --run_all n --selected_app 1
+
