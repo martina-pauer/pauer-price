@@ -1,10 +1,11 @@
-on:
-  #schedule:
-    #- cron: '30 20,13 * * 1,2,4,5,6,7
+name: Python Web Apps Flask Running
+
+on: push
 
 jobs:
-  test_schedule:
+  my-job:
+    name: Using Flask
     runs-on: ubuntu-latest
     steps:
-      - name: All the days f
+      - name: Running Tango App
         run: cd src && ./auto.py --run_all n --selected_app 1
