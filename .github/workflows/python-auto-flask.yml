@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Running Tango App
-        run: cd ./auto.py --run_all n --selected_app 1
+        run: cd src && ./auto.py --run_all n --selected_app 1
     permissions: read-all    
 
         
