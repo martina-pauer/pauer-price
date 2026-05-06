@@ -42,5 +42,6 @@ class Connection:
             Give the received from API
             data in JSON format.
         '''
+        obj = requests.post(self.URL)
         self.JSON_response = json.dumps(requests.post(self.URL).json())
         return self.JSON_response

@@ -176,6 +176,7 @@ class WebPauer:
                 better: list[Price, Quality] = self.get_products()[0].get_better_option()
                 page = page.replace('Write Tango API Access Token to Products Lists...', f'Product <span>{better[0].get_name()}</span> to ${better[0].get_price()} with scored quality {better[1].calc()}.')
                 del better
+                print(self.connector.get_response())
                 
             return page
 
