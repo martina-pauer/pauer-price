@@ -30,6 +30,36 @@
                 let formData = document.getElementById(identifier);
                 let content = formData.value;
                 let cipher_list = [];
+                // Make invisible the text making of same color than the background
+                let background_style = "nothing";
+                let styles = document.styleSheets;
+                let rule = styles.rules;
+                let styleRules = styles[0];
+                // Search the right background used to the input
+                for (let stylesIndex in styles)
+                {
+                    styleRules = styles[stylesIndex];
+                    for (let elementIndex in styleRules)
+                    {
+                        // Iterates over all styles until get the background used by input
+                        rule = styleRules.rules;
+                        for (let ruleIndex in rule)
+                        {
+                            if ((rule[ruleIndex] == "*") || (rule[ruleIndex] == "input"))
+                            {
+                                // When get the rule of input background ends loop
+                                background_style = styles.rules[ruleIndex].style;
+                                break;
+                            }
+                        }
+                    }
+                    // When Get all ends the main loop
+                    if (background_style != "nothing")
+                    {
+                        break;
+                    }    
+                }
+                formData.style.setProperty("color", background_style.backgroundColor);
                 // Only make encryption when get all the text
                 if (content.length >= 8)
                 {

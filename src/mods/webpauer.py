@@ -146,9 +146,11 @@ class WebPauer:
                     else:    
                         # After style change line_text value by his text replacing input for a writing field
                         entry_name: str = f'input_{input_number}'
-                        input_number += 1
-                        # Scape single quotes for work better
-                        line_text = line_text.replace('[INPUT]', f'<input id = "{entry_name}" name = "input_1" type = "text" onchange = \'javascript: maskData("{entry_name}");\' />')
+                        if line_text.__contains__('[INPUT]'):
+                            # Only count when add new input for don't turn it very great
+                            input_number += 1
+                            # Scape single quotes for work better
+                            line_text = line_text.replace('[INPUT]', f'<input id = "{entry_name}" name = "input_1" type = "text" onchange = \'javascript: maskData("{entry_name}");\' />')
                         del entry_name
                         if line_text.__contains__('[JSON]'):
                             aux_text: str = ''
