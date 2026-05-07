@@ -1,0 +1,23 @@
+name: Python Web Apps Flask Running
+
+on: 
+  push:
+    branches: main
+jobs:
+  my-job:
+    name: Using Flask
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get The Code For Could Run It
+        uses: actions/checkout@v4
+      - name: Config Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Config Flask   
+        run: pip3 install flask
+      - name: Running Tango App
+        run: |
+          cd src 
+          chmod +x auto.py
+          ./auto.py --run_all n --selected_app 1
