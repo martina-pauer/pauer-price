@@ -18,11 +18,11 @@ jobs:
         run: pip3 install requests
       - name: Config Flask   
         run: pip3 install flask
+      - name: Config To Give Extern Addresses (Port Forwading with Dev Tunnels) 
+        run: |
+          npx localtunnel --port 5000 
       - name: Running Tango App
         run: |
           cd src 
           chmod +x auto.py
           ./auto.py --run_all n --selected_app 1 
-      - name: Config To Give Extern Addresses (Port Forwading with Dev Tunnels) 
-        run: |
-          npx localtunnel --port 5000
