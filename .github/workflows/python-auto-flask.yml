@@ -14,6 +14,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      - name: Config Requests Module
+        run: pip3 install requests
       - name: Config Flask   
         run: pip3 install flask
       - name: Running Tango App
