@@ -20,7 +20,7 @@ jobs:
         run: pip3 install flask
       - name: Config To Give Extern Addresses (Port Forwading with Dev Tunnels) 
         run: |
-          npx install localtunnel@2.0.2
+          npx --package=localtunnel@2.0.2 -y
           npx localtunnel --port 5000 
       - name: Running Tango App
         run: |
