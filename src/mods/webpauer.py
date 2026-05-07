@@ -130,7 +130,7 @@ class WebPauer:
             page: str = ''
             input_number: int = 1
             
-            with open('/workspaces/pauer-price/src/web/index.html', 'r') as text:
+            with open('./web/index.html', 'r') as text:
                 for line_text in text.readlines():
                     # Get data from a hypertext document for make the page
                     # Only replace when found replacing line after only add text for more velocity

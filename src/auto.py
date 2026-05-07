@@ -25,7 +25,7 @@ elif sys.argv.__len__() == 3:
 else:
     select: str = 'n'    
 
-prefix: str = '/workspaces/pauer-price/src/'
+prefix: str = './'
 
 if select == 'n': 
     # Ask for web app to run

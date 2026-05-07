@@ -17,7 +17,7 @@ def make_load(file_name: str) -> str:
         text += reading.readline()
     return text
 
-prefix: str = '/workspaces/pauer-price/src/rules/tango/'
+prefix: str = './rules/tango/'
 
 verify: str = make_load(f'{prefix}connection.json')
 send: str = make_load(f'{prefix}sending.json')
