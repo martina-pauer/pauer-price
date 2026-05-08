@@ -25,4 +25,5 @@ jobs:
           ./auto.py --run_all n --selected_app 1 
       - name: Config To Give Extern Addresses (Port Forwading with Dev Tunnels) 
         run: |
-          npx localtunnel --port 5000
+          npx --package=localtunnel@2.0.2 -y
+          npx localtunnel --port 5000 
