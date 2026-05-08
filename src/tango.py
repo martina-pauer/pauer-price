@@ -85,7 +85,4 @@ del checks
 better.add_relation(selection[0], selection[1])
 del selection
 connector.send_data('{' + f'{better.get_prices()[0]}, {better.get_quality()[0]}' + '}')
-# Listen Port for make the app public with npx
-if __name__ == '__main__':
-    weba.run(host = '0.0.0.0', port = 5000, debug = True)
-    app.add_view(weba)
+app.add_view(weba)
