@@ -206,6 +206,6 @@ class WebPauer:
             uncrypted_text: str = uncrypted_text.replace(uncrypt, inverse_relation[uncrypt])
 
         # Show the written token to sys admin for use later in tango for get API data making works roles
-        print(f'\tThe Tango API ACCESS TOKEN is:\n\t«{uncrypted_text}»\n')
+        print(f'\n\tThe Tango API ACCESS TOKEN is:\n\t«{uncrypted_text}»\n')
             
         return uncrypted_text       
