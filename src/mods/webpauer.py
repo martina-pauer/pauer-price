@@ -200,12 +200,15 @@ class WebPauer:
         del aux
         # Follow with the uncrypting algorithm    
         relation_keys: dict[str, str] = inverse_relation.keys()
-        uncrypted_text: str = coded_message
+        uncrypted_text: str = ''
         # Replacing the encrypted for equivalence using inverse relation to javascript dict
-        for uncrypt in relation_keys:
-            uncrypted_text: str = uncrypted_text.replace(uncrypt, inverse_relation[uncrypt])
+        for uncrypted_char in coded_message:
+            # Sorted for uncrypt from first to last the right char in order
+            for uncrypt in relation_keys:
+                if uncrypt == uncrypted_char:
+                    uncrypted_text += uncrypted_char.replace(uncrypt, inverse_relation[uncrypt])
 
         # Show the written token to sys admin for use later in tango for get API data making works roles
         print(f'\n\tThe Tango API ACCESS TOKEN is:\n\t«{uncrypted_text}»\n')
             
-        return uncrypted_text       
+        return uncrypted_text
